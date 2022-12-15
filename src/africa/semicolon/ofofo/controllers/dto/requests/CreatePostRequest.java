@@ -1,4 +1,4 @@
-package dto.requests;
+package africa.semicolon.ofofo.controllers.dto.requests;
 
 public class CreatePostRequest {
     private String title;

@@ -1,14 +1,12 @@
-package data.repositories;
+package africa.semicolon.ofofo.controllers.data.repositories;
 
-import data.models.Comment;
+import africa.semicolon.ofofo.controllers.data.models.Comment;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+@Repository
+public interface CommentRepository extends MongoRepository<Comment, String> {
 
-public interface CommentRepository {
     Comment save(Comment comment);
-    List<Comment> viewComments();
-    long count();
-    Comment viewComment(int commentId);
-    void deleteComment(Comment comment);
-    void deleteComment(int commentId);
 }

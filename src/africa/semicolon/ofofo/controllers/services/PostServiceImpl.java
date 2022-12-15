@@ -1,15 +1,19 @@
-package services;
+package africa.semicolon.ofofo.controllers.services;
 
-import data.models.Post;
-import data.repositories.PostRepository;
-import data.repositories.PostRepositoryImpl;
-import dto.requests.CreatePostRequest;
+import africa.semicolon.ofofo.controllers.data.models.Comment;
+import africa.semicolon.ofofo.controllers.data.models.Post;
+import africa.semicolon.ofofo.controllers.data.repositories.PostRepository;
+import africa.semicolon.ofofo.controllers.dto.requests.CreatePostRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 import java.util.List;
-
+@Service
 public class PostServiceImpl implements PostServices{
 
-    private PostRepository postRepository = new PostRepositoryImpl();
+    @Autowired
+    private PostRepository postRepository;
 
     @Override
     public void createPost(CreatePostRequest createPostRequest) {
@@ -22,22 +26,30 @@ public class PostServiceImpl implements PostServices{
 
 
     @Override
-    public void updatePost(int id, String title, String body) {
+    public void updatePost(String id, String title, String body) {
 
     }
 
     @Override
-    public void deletePost(int id) {
+    public void deletePost(String id) {
 
     }
 
     @Override
-    public Post viewPOst(int id) {
-        return postRepository.findById(id);
+    public Post viewPOst(String id) {
+        return postRepository.findPostById(id);
     }
 
     @Override
     public List<Post> viewAll() {
         return postRepository.findAll();
+    }
+
+    @Override
+    public void addComment(String postId, Comment comment) {
+        Post savePost = postRepository.findPostById(postId);
+        savePost.getComments().add(comment);
+        postRepository.save(savePost);
+
     }
 }

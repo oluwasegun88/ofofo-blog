@@ -1,20 +1,25 @@
-package controllers;
+package africa.semicolon.ofofo.controllers;
 
-import data.models.Post;
-import dto.requests.CreatePostRequest;
-import services.PostServiceImpl;
-import services.PostServices;
+import africa.semicolon.ofofo.controllers.data.models.Post;
+import africa.semicolon.ofofo.controllers.dto.requests.CreatePostRequest;
+import africa.semicolon.ofofo.controllers.services.PostServiceImpl;
+import africa.semicolon.ofofo.controllers.services.PostServices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
 public class PostController {
 
-    private PostServices postServices = new PostServiceImpl();
-
-    public String createPost(CreatePostRequest createPostRequest){
+    @Autowired
+    private  PostServices postServices;
+    @PostMapping("/post")
+    public String createPost(@RequestBody CreatePostRequest createPostRequest){
         postServices.createPost(createPostRequest);
         return "Successful";
     }
 
-    public Post viewPost(int postId){
+    @GetMapping("/post/{postId}")
+    public Post viewPost(@PathVariable String postId){
         return postServices.viewPOst(postId);
     }
 }

@@ -1,22 +1,22 @@
-package services;
+package africa.semicolon.ofofo.controllers.services;
 
-import data.models.Post;
-import dto.requests.CreatePostRequest;
+import africa.semicolon.ofofo.controllers.data.models.Comment;
+import africa.semicolon.ofofo.controllers.data.models.Post;
+import africa.semicolon.ofofo.controllers.dto.requests.CreatePostRequest;
 
-import java.util.Collection;
+
 import java.util.List;
 
 public interface PostServices {
 
     void createPost(CreatePostRequest createPostRequest);
-
-
     
-    void updatePost(int id, String title, String body);
+    void updatePost(String id, String title, String body);
     
-    void deletePost(int id);
+    void deletePost(String id);
     
-    Post viewPOst(int id);
+    Post viewPOst(String id);
 
     List<Post> viewAll();
+    void addComment(String postId, Comment comment);
 }

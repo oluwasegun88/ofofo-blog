@@ -1,20 +1,13 @@
-package data.repositories;
+package africa.semicolon.ofofo.controllers.data.repositories;
 
-import data.models.Post;
+import africa.semicolon.ofofo.controllers.data.models.Post;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface PostRepository {
+@Repository
+public interface PostRepository extends MongoRepository<Post,String> {
 
-    Post save(Post post);
-
-    Post findById(int id);
-
-    List<Post> findAll();
-
-    long count();
-
-    void delete(Post post);
-
-    void delete(int id);
+    Post findPostById(String id);
 }
